@@ -12,10 +12,11 @@ export function apiCall(_data: any): Promise<object> {
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
     };
     fetch(apiEndpoint, reqOptions)
-      .then((response) => {
-        console.log(response);
+      .then((res: { json: () => any }) => res.json())
+      .then((json: any) => {
+        resolve(json);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         reject(error);
       });
   });

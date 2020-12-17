@@ -5,7 +5,8 @@
   "main": "./dist/index.js",
   "types": "dist/index.d.js",
   "scripts": {
-    "dev":  "ts-node app.ts",
+    "test": "mocha -r ts-node/register 'tests/**/*.ts'",
+    "dev": "ts-node app.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "build:dist": "tsc",
@@ -15,6 +16,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^14.14.14",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
     "prettier": "^2.2.1",
     "ts-loader": "^8.0.12",
     "ts-node": "^9.1.1",
