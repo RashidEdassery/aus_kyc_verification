@@ -10,7 +10,7 @@
 
 ### Valid input sample
 
-```json
+```
 {
     birthDate: '1985-02-08',
     givenName: 'James',
