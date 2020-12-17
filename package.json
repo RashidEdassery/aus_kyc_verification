@@ -1,0 +1,29 @@
+{
+  "name": "aus_kyc_verification",
+  "version": "1.0.0",
+  "description": "User KYC verification module",
+  "main": "./dist/index.js",
+  "types": "dist/index.d.js",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "build:dist": "tsc",
+    "build": "npm run format && npm run build:dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "ts-loader": "^8.0.12",
+    "ts-node": "^9.1.1",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.1.3"
+  },
+  "files": [
+    "dist/**/*",
+    "dist"
+  ],
+  "dependencies": {}
+}
