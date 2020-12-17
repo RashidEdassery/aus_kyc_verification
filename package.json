@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "types": "dist/index.d.js",
   "scripts": {
+    "dev":  "ts-node app.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "build:dist": "tsc",
@@ -25,5 +26,7 @@
     "dist/**/*",
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
 }
