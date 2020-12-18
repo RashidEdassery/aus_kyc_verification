@@ -1,11 +1,11 @@
 export interface UserDetailsType {
   birthDate: string;
   givenName: string;
-  middleName: string;
+  middleName?: string;
   familyName: string;
   licenceNumber: string;
   stateOfIssue: string;
-  expiryDate: string;
+  expiryDate?: string;
 }
 
 export enum State_Values {

@@ -1,5 +1,7 @@
 import { UserDetailsType, State_Values, ApiResponseType, ResponseType } from './_models';
-import { apiCall } from './_helpers';
+import { apiCall, validate } from './_helpers';
+const Ajv = require('ajv');
+const ajv = new Ajv.default({ allErrors: true });
 
 /**
  * @param {UserDetailsType}  request_obj - Required: Property Details with MLS and Public Record.
@@ -9,16 +11,9 @@ import { apiCall } from './_helpers';
 export class KYCModule {
   request_obj: UserDetailsType;
   constructor(request_obj: UserDetailsType) {
-    if (
-      !request_obj.birthDate ||
-      !request_obj.givenName ||
-      !request_obj.middleName ||
-      !request_obj.familyName ||
-      !request_obj.licenceNumber ||
-      !(request_obj.stateOfIssue in State_Values) ||
-      !request_obj.expiryDate
-    ) {
-      throw new Error('Invalid Parameters.');
+    if (!validate(request_obj)) {
+      console.log(ajv.errorsText(validate.errors));
+      throw Error('Invalid Parameters.');
     }
     this.request_obj = request_obj;
   }
@@ -26,7 +21,6 @@ export class KYCModule {
     return new Promise(async (resolve, reject) => {
       try {
         const verifyStatus = <ApiResponseType>await apiCall(this.request_obj);
-        console.log(verifyStatus.verificationResultCode);
         switch (verifyStatus.verificationResultCode) {
           case 'Y':
             resolve({
@@ -39,13 +33,13 @@ export class KYCModule {
               success: false,
               message: 'KYC not verified',
             });
-            break;  
+            break;
           case 'D':
             resolve({
               success: false,
               message: 'Document Error',
             });
-            break;  
+            break;
           default:
             resolve({
               success: false,
